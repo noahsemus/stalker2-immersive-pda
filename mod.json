@@ -1,0 +1,12 @@
+{
+    "name":  "ImmersivePDA",
+    "short":  "ImmPDA",
+    "repo":  "stalker2-immersive-pda",
+    "description":  "Skif raises the PDA in his hand instead of it filling the screen: the world stays visible around it, free look works, and it goes away fast.",
+    "release_pak_suffix":  20,
+    "dev_pak_suffix":  30,
+    "nexus_id":  null,
+    "optional_plugins":  [
+
+                         ]
+}

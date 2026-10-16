@@ -1,0 +1,18 @@
+{
+    "FileVersion":  3,
+    "Version":  1,
+    "VersionName":  "",
+    "CreatedByURL":  "",
+    "DocsURL":  "",
+    "MarketplaceURL":  "",
+    "SupportURL":  "",
+    "FriendlyName":  "ImmersivePDA",
+    "Description":  "Skif raises the PDA in his hand instead of it filling the screen: the world stays visible around it, free look works, and it goes away fast.",
+    "Category":  "Game Features",
+    "CreatedBy":  "noahsemus",
+    "EnabledByDefault":  true,
+    "CanContainContent":  true,
+    "ExplicitlyLoaded":  true,
+    "BuiltInInitialFeatureState":  "Registered",
+    "Mod":  true
+}
