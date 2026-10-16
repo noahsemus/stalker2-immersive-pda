@@ -20,6 +20,17 @@ Full notes: `zonekit/research/2026-10-16-pda-kit-research.md` (PDA) and `zonekit
   `ThumbMouseButton` (tester's profile), via `SetIgnoreLookInput`; it refuses to start if look input is already
   ignored, and switches off if anyone re-parents the camera.
 
+## Decisions (tester, 2026-10-16)
+- **Route A**: the real PDA, held in the hand, UI on the device, world around it.
+- **Walking while it is up: yes, WASD walks**; the map pans by mouse drag (and arrow keys).
+- **Looking around: our copy of Slop yCam's Free Look** while the PDA is up (yCam's own is off in the PDA by its
+  code): hold the button from yCam's `profile.ini` (`freelook_key`, tester: `ThumbMouseButton`), its sensitivity,
+  limits (yaw 75 / pitch 40), return speed and torso follow; read the profile at runtime if a Blueprint can (else
+  ship the defaults + MCM), fall back to yCam's defaults when yCam is absent. While held: cursor hidden, mouse turns
+  the view, the device stays put. Released / PDA closed: ease back, hand everything to yCam (camera parent
+  untouched, `SetIgnoreLookInput` balanced).
+- The world keeps running in the PDA (tester: as vanilla).
+
 ## Approach, cheapest and least conflicting first
 Two routes; the tester picks (open question 1). Both need the same building blocks: a NewContent runtime host
 (`BP_ImmPDASubsystem` -> `BP_ImmPDAActor`, `harness/docs/runtime-host.md`), a held pose of our own made from the
@@ -49,9 +60,10 @@ markers / journal / notes. Overrides nothing; more of our own UI.
 ## Open questions and how each gets answered
 | Question | Answered by |
 |---|---|
-| 1. Route A or B (or B's glance plus A for the full PDA) | tester |
-| 2. Look key while the PDA is up; walking while it is up | tester |
-| 3. Does the world really keep running in the PDA; what does holding P 1 s do | tester, one look in game |
+| 1-2. Route, look, walking | decided (above) |
+| 3. What does holding P 1 s do (the world keeps running: tester) | tester, one look in game |
+| 3b. How to turn the view without touching the camera's parent: camera relative rotation (yCam is detached in the PDA) vs `jnt_camera` pose | kit + build; restore before yCam re-binds |
+| 3c. Can a Blueprint read yCam's `profile.ini` (no file API in BP?) | kit grep for file / config read nodes |
 | 4. Does `MG_fp_pda_EMP_a` show the device with the screen visible at a good distance | tester previews it in the editor |
 | 5. Can a mod montage / pose win over `MG_fp_pda` in MainActionSlot under `AnimBP_Player_TwoHandedItem` | kit read of the posture AnimBP, then a build |
 | 6. Can a mod input context beat the Exclusive `IMC_PDA_*` contexts | canary build |
