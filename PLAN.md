@@ -30,6 +30,11 @@ Full notes: `zonekit/research/2026-10-16-pda-kit-research.md` (PDA) and `zonekit
   the view, the device stays put. Released / PDA closed: ease back, hand everything to yCam (camera parent
   untouched, `SetIgnoreLookInput` balanced).
 - The world keeps running in the PDA (tester: as vanilla).
+- **MCM option for the free look key** (tester, 2026-10-16): a Keybind setting (MCM type 8; the kit's
+  `MCM_ModExample1` has a keybind example to copy the nodes from) "PDA free look key", default `ThumbMouseButton`
+  (yCam's key on the tester's profile). Provider = our actor implementing `BPI_MCM_SettingsProvider`
+  (`harness/docs/compatibility.md` § MCM); MCM an optional `.uplugin` dependency, so without MCM the default key
+  works. Read on `ApplyMCMSettings`; polled with `IsInputKeyDown` while the PDA is up (no IMC row needed).
 
 ## Approach, cheapest and least conflicting first
 Two routes; the tester picks (open question 1). Both need the same building blocks: a NewContent runtime host
@@ -63,7 +68,8 @@ markers / journal / notes. Overrides nothing; more of our own UI.
 | 1-2. Route, look, walking | decided (above) |
 | 3. What does holding P 1 s do (the world keeps running: tester) | tester, one look in game |
 | 3b. How to turn the view without touching the camera's parent: camera relative rotation (yCam is detached in the PDA) vs `jnt_camera` pose | kit + build; restore before yCam re-binds |
-| 3c. Can a Blueprint read yCam's `profile.ini` (no file API in BP?) | kit grep for file / config read nodes |
+| 3c. Can a Blueprint read yCam's `profile.ini` for sensitivity / limits (no file API in BP?); the key comes from MCM | kit grep for file / config read nodes |
+| 3d. Does `IsInputKeyDown` see the thumb button while the PDA's Exclusive context and cursor are up | build 1 probe |
 | 4. Does `MG_fp_pda_EMP_a` show the device with the screen visible at a good distance | tester previews it in the editor |
 | 5. Can a mod montage / pose win over `MG_fp_pda` in MainActionSlot under `AnimBP_Player_TwoHandedItem` | kit read of the posture AnimBP, then a build |
 | 6. Can a mod input context beat the Exclusive `IMC_PDA_*` contexts | canary build |
@@ -81,5 +87,6 @@ markers / journal / notes. Overrides nothing; more of our own UI.
 | 6 | combat / damage / sprint / crouch / ladder | open in each | sane (vanilla refusals kept) |
 | 7 | rebound keys | as 1 | rebinds honoured |
 | 8 | gamepad | as 1, look | works |
+| 8b | MCM | change the free look key, reload, without MCM installed | new key works at once and after a reload; default key without MCM |
 | 9 | with our other mods (Looting incl. Instant Intel note open, Dialogue, Campfires, Reloading) | open PDA around each | no conflict |
 | 10 | save / load with PDA up, death, cutscene starting | — | clean state |

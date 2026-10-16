@@ -13,7 +13,7 @@ harness on 2026-10-16.
   two routes. Waiting on the tester: pick `ImmersivePDA` in the editor's toolbar mod selector once (GameFeatureData),
   a preview of `MG_fp_pda_EMP_a`.
 - 2026-10-16: tester decided: Route A (real PDA in hand), WASD walks while it is up, looking around = our copy of
-  Slop yCam's Free Look (same key / feel, from his yCam profile). PLAN.md § Decisions.
+  Slop yCam's Free Look (same key / feel, from his yCam profile), its key an MCM keybind setting. PLAN.md § Decisions.
 
 ## Key facts (verified; cite file:line in the kit)
 - The fullscreen look = `MG_fp_pda` idle holds `SK_pda` 13 cm before the eye (no FOV / camera change) +
