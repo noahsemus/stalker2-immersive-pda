@@ -129,7 +129,7 @@ Mostly from ImmersiveDialogue 2.0-2.1 (walk in dialogue, arms, gestures) and Imm
   § Camera for the pitch source); an additive pose passes the game's look through.
 - Item / PDA / backpack montages (`MainActionSlot`; mods may use `DefaultSlot` / `UpperBody`) key the hips 7.4 cm /
   19 deg away from `fp_bh_idle_stand`, the same as `fp_ar_idle_stand`: build an additive meant to run under items on
-  `fp_ar_idle_stand`, or the legs swing while an item plays. Root children (`jnt_item` carries the PDA,
+  `fp_ar_idle_stand`, or the legs swing while an item plays. Root children (`jnt_item`,
   `jnt_camera`, IK roots) must move with a lowered pelvis.
 - Look up with `IsSlotActive(<slot>)` which kind of montage runs; `GetCurrentActiveMontage` returns the most recent
   one only, and from an actor's tick it is not reliable for "which item is playing" (Campfires: an item used from

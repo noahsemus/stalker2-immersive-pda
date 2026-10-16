@@ -9,11 +9,17 @@ Repo `noahsemus/stalker2-immersive-pda`, Zone Kit plugin `ImmersivePDA` (`/Immer
 harness on 2026-10-16.
 
 ## Current state (one line per checkpoint / release: date, what changed, what the tester confirmed in game)
-- 2026-10-16: repo created. Next: the tester picks `ImmersivePDA` in the editor's toolbar mod selector once
-  (GameFeatureData), then kit research for PLAN.md.
+- 2026-10-16: repo created; kit research and Slop yCam research done (`zonekit/research/`), PLAN.md written with
+  two routes. Waiting on the tester: pick `ImmersivePDA` in the editor's toolbar mod selector once (GameFeatureData),
+  the route / look-key / walking decisions in PLAN.md.
 
 ## Key facts (verified; cite file:line in the kit)
-- _(fill in as research lands)_
+- The fullscreen look = `MG_fp_pda` idle holds `SK_pda` 13 cm before the eye (no FOV / camera change) +
+  fullscreen UMG `W_PDABookView` (`CoreVariables.cfg:932`) opened by `AnimNotify_UseHandItem` at 0.833 s.
+- Every PDA page pushes an Exclusive context without look / walk rows (`InputMappingContextPrototypes.cfg:59-228`).
+- `MG_fp_pda_EMP_a` holds the device ~34 cm ahead with no UI: the base for our held pose.
+- Slop yCam 8.10.5 suspends itself while `IsUsingPDA`, cancels Free Look on a visible cursor, and must keep the
+  pawn camera parented to the mesh (`harness/docs/compatibility.md`).
 
 ## Assets this mod may override
 - _(none yet; see harness/docs/compatibility.md before adding any)_
